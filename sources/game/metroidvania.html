@@ -1,0 +1,176 @@
+<html>
+	<body>
+		<canvas id="C" style="position:absolute;width:100%;height:100%;left:0;top:0">
+	</body>
+<script>
+
+// RENDER
+X=(x,y,c,h)=>Q(
+	(y-(p.y-9)*Z)*S,
+	S,
+	c-(u=y>50)*3,
+	S-h,
+	(x-(p.x-9)*Z)*S
+);
+
+
+// TILE COLLISIONS
+W=(x,y)=>v=x<0|y<0|x>s|y>s|Q[(y|0)*s+x|0];
+			
+// PHYSICS
+//
+// w  : bullet (kill enemy/break walls) (+ reset keyboard)
+// S  : enemy
+// ---
+// x,y: position
+// c  : color
+// z  : -height
+// d  : draw gap y (+ reset keyboard)
+// --
+// j,b: force
+// r  : restitution	
+// a  : gravity (+ reset keyboard)
+// --
+// t  : life timer
+
+H=e=>{
+	
+	for(f of"wSxyzdjbrat")e[f]=+[e[f]];
+	with(e)
+		return W(x+j,y)?
+			w?
+				e=Q[(y|0)*s+x+j|0]=0
+			:
+				j/=-r
+		:
+			x+=j
+		,
+		b+=a
+		,
+		W(x,y+b)?
+			b/=-r
+		:
+			y+=b
+		,
+		X(x-D,y-d,c,z)
+		,
+		S?
+			o+=
+				e=N[F](
+					f=>
+						f.w*!L(f,e)
+					)==0
+			:
+			t*=2
+		,
+		t<1E3/q&&e
+		
+	};
+
+L=(a,b)=>a.x-b.x|a.y-b.y|0;
+
+
+// INPUT
+K=onkeyup=onkeydown=x=>K[x.key]=!!x.type[5]/5;
+
+// NUMBERS
+// -------
+// s: 70
+// l: 140
+
+// ELEMENTS
+h=!setInterval(_=>{
+
+	// MAP MODE
+	Z=!K.g;
+	S=2+Z*7;
+
+	h?
+		// CLEAR
+		Q(0,l,9,l,0)
+	:
+		// INITIALIZE MAP
+		m=[N=[q=s=70]]
+	;
+
+	// RENDER SCREEN
+	for(
+		o=s*s
+		;
+		o--
+		;
+		h?
+			Q[o]&&X(
+				o%s,
+				(o/s|0)-X[o],
+				5+Q[o-s],
+				-2
+			)
+		:
+			m[o]=R(N[s-o]={
+				d:D=.5,
+				c:7,
+				r:1,
+				x:R(/* PLAYER */ p={c:4,r:9,d:1})*s,
+				y:R(/* CANVAS CONTEXT */ l=C.width=C.height=140)*s,
+				j:R(/* RESIZE */ c=C.getContext`2d`)-D,
+				b:R(/* DRAW */ Q=(y,s,o,h=3,x=4)=>c.fillRect(x|0,y|0,s,h,c.fillStyle="#"+o*123))-D,
+				a:X[o]=R(/* RESET KEYBOARD */ H(K))/9-.06,
+				S
+			})<D
+	) R=Math.random
+	;
+
+	h||
+		m[F="filter"]((e,i)=>{
+			h=s;
+			for(
+					b=0,j=9
+				;
+					j--
+				;
+					Q[i]=b>4-e
+			)
+				b+=j-4&&m[
+					j%3*s
+					+i
+					-s
+					-1
+					+
+					j/3|0
+				]
+		}) /**/;
+		
+	// MOVE SPRITES
+	N=N[F](H);
+
+	// MOVE PLAYER
+	H(p);
+	with(p)
+
+		Z&&(
+			j=K.d-K.a,
+			b-=b<0&&v*K.w&&D-q/240,
+			j*K.f?N[l]={
+				c:R(/**/)*9|0,
+				w:1,
+				t:1,
+				z:6,
+				x,
+				y:y-D,
+				j:j*4
+			}:a=-~u/50,
+			X(x-D+j,y-D,1,6),Q(4,s,1,9),Q(5,q=o,6),Q(9,h,4)		 
+		),
+		
+		h-=N[F](
+			f=>
+				f.S*!L(f,p)
+			)!=0
+		;
+		
+		for(i=l;i-=2;/**/)Q(i,l,9,1,0)
+
+},40)
+</script>
+</html>
