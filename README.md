@@ -1,6 +1,6 @@
 <div align="center">
   <p>1KB PRINTABLE VIDEO GAME CARTRIGE</p>
-  <p><a href=""><img src="images/logo.png"></a></p>
+  <p><a href="https://www.kesiev.com/metroidvania/"><img src="images/logo.png"></a></p>
   <p>EXPLORE, FIGHT, IMPROVE, REPEAT!</p>
   <p><i>FOR OPENSOURCE JAVASCRIPT CONSOLE SYSTEM</i></p>
 </div>
