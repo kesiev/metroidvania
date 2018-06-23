@@ -8,7 +8,7 @@
 ---
 
 <div align="center">
-    <a href="https://www.kesiev.com/metroidvania/">Play the game</a> - <a href="../">Read the manual</a>
+    <a href="https://www.kesiev.com/metroidvania/">Play the game</a> - <a href="/kesiev/metroidvania">Read the manual</a>
 </div>
 
 ---
